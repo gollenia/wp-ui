@@ -1,0 +1,80 @@
+.ctx2-range {
+	label {
+		font-weight: 600;
+		font-size: 0.9375rem;
+		line-height: 1.5;
+	}
+
+	.ctx2-range__set {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.ctx2-range__control {
+		flex: 1;
+	}
+
+	.ctx2-range__slider {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: var(--wp--custom--ctx--ui--range--control-height, 1.5rem);
+		touch-action: none;
+		user-select: none;
+	}
+
+	.ctx2-range__track {
+		position: relative;
+		width: 100%;
+		height: var(--wp--custom--ctx--ui--range--track-height, 0.375rem);
+		border-radius: var(--wp--custom--ctx--ui--range--track-radius, 999px);
+		background: var(--wp--custom--ctx--ui--range--track-background, rgba(148, 163, 184, 0.08));
+	}
+
+	.ctx2-range__indicator {
+		position: absolute;
+		inset: 0 auto 0 0;
+		border-radius: inherit;
+		background: var(--wp--custom--ctx--ui--range--indicator-background, #000000);
+	}
+
+	.ctx2-range__thumb {
+		position: absolute;
+		top: 50%;
+		width: var(--wp--custom--ctx--ui--range--thumb-size, 1rem);
+		height: var(--wp--custom--ctx--ui--range--thumb-size, 1rem);
+		border: var(--wp--custom--ctx--ui--range--thumb-border, 2px solid #000000);
+		border-radius: var(--wp--custom--ctx--ui--range--thumb-radius, 999px);
+		background: var(--wp--custom--ctx--ui--range--thumb-background, var(--wp--preset--color--base, #fff));
+		box-shadow: var(--wp--custom--ctx--ui--range--thumb-shadow, 0 1px 2px 0 rgba(15, 23, 42, 0.08));
+
+		&:focus-within {
+			box-shadow: var(--wp--custom--ctx--ui--focus-ring, 0 0 0 3px rgba(0, 0, 0, 0.05));
+		}
+	}
+
+	&[data-disabled] {
+		.ctx2-range__slider {
+			opacity: var(--wp--custom--ctx--ui--button--disabled-opacity, 0.55);
+		}
+
+		.ctx2-range__thumb {
+			cursor: default;
+		}
+	}
+
+	.ctx2-range__ticks,
+	.ctx2-range__labels {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.85em;
+		color: var(--wp--custom--ctx--ui--field--muted-color, rgba(15, 23, 42, 0.62));
+	}
+
+	.ctx2-range__value {
+		min-width: 2ch;
+		font-weight: 600;
+		text-align: right;
+	}
+}

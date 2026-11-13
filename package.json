@@ -1,0 +1,88 @@
+{
+	"name": "@contexis/wp-react-form",
+	"version": "2.6.2",
+	"description": "Create forms in the frontend based on JSON Form data",
+	"author": "Thomas Gollenia",
+	"license": "GPL-2.0-or-later",
+	"main": "lib/index.js",
+	"module": "lib/esm/index.js",
+	"types": "lib/index.d.ts",
+	"sideEffects": [
+		"./lib/style.css"
+	],
+	"files": [
+		"lib",
+		"readme.md"
+	],
+	"exports": {
+		".": {
+			"types": "./lib/index.d.ts",
+			"import": "./lib/esm/index.js",
+			"require": "./lib/index.js",
+			"default": "./lib/index.js"
+		},
+		"./form": {
+			"types": "./lib/form.d.ts",
+			"import": "./lib/esm/form.js",
+			"require": "./lib/form.js",
+			"default": "./lib/form.js"
+		},
+		"./dialog": {
+			"types": "./lib/dialog.d.ts",
+			"import": "./lib/esm/dialog.js",
+			"require": "./lib/dialog.js",
+			"default": "./lib/dialog.js"
+		},
+		"./style.css": "./lib/style.css"
+	},
+	"bugs": {
+		"url": "https://github.com/gollenia/wp-react-form/issues",
+		"email": "thomas@gollenia.at"
+	},
+	"homepage": "https://github.com/gollenia/wp-react-form#readme",
+	"scripts": {
+		"clean": "rm -rf lib",
+		"build": "npm run clean && npm run build:js && npm run build:esm && npm run build:css && npm run build:types",
+		"build:js": "esbuild src/index.ts src/form.ts src/dialog.ts --bundle --format=cjs --platform=neutral --target=es2020 --sourcemap --outdir=lib --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
+		"build:esm": "esbuild src/index.ts src/form.ts src/dialog.ts --bundle --format=esm --splitting --platform=neutral --target=es2020 --sourcemap --outdir=lib/esm --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
+		"build:css": "esbuild src/style.scss --bundle --loader:.scss=css --outfile=lib/style.css",
+		"build:types": "tsc -p tsconfig.types.json",
+		"check": "tsc -p tsconfig.json --noEmit",
+		"lint": "biome check biome.json jest.config.ts package.json tsconfig.json tsconfig.jest.json tsconfig.types.json",
+		"format": "biome format --write .",
+		"test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
+		"postversion": "git push && git push --tags",
+		"prepublishOnly": "npm test && npm run build",
+		"prepack": "npm run build"
+	},
+	"dependencies": {
+		"@base-ui/react": "^1.4.1",
+		"dompurify": "^3.4.0"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.4",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.0.1",
+		"@types/jest": "^29.5.14",
+		"@types/react": "^18.3.12",
+		"esbuild": "^0.25.11",
+		"isomorphic-fetch": "^3.0.0",
+		"jest": "^29.7.0",
+		"jest-environment-jsdom": "^29.7.0",
+		"ts-jest": "^29.2.5",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.6.3"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 3 versions",
+		"not dead",
+		"not ie <= 11"
+	]
+}

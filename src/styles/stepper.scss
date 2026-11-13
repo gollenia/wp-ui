@@ -1,0 +1,51 @@
+.ctx2-stepper {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--custom--ctx--ui--stepper--gap, 0.5rem);
+	border: 1px solid var(--wp--custom--ctx--ui--stepper--border-color, rgba(15, 23, 42, 0.16));
+	padding: var(--wp--custom--ctx--ui--stepper--padding, 3px);
+	border-radius: var(--wp--custom--ctx--ui--stepper--radius, 999px);
+
+	.ctx2-stepper__button {
+		width: var(--wp--custom--ctx--ui--stepper--button-size, 1.75rem);
+		height: var(--wp--custom--ctx--ui--stepper--button-size, 1.75rem);
+		border: 1px solid var(--wp--custom--ctx--ui--stepper--button-border-color, rgba(15, 23, 42, 0.16));
+		border-radius: var(--wp--custom--ctx--ui--stepper--button-radius, 999px);
+		background: var(--wp--custom--ctx--ui--stepper--button-background, var(--wp--preset--color--base, #fff));
+		color: var(--wp--custom--ctx--ui--stepper--button-text-color, inherit);
+		cursor: pointer;
+		font-size: 1.125rem;
+		line-height: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background-color 0.15s ease,
+			border-color 0.15s ease,
+			box-shadow 0.15s ease,
+			opacity 0.15s ease;
+
+		&:focus-visible {
+			outline: none;
+			border-color: var(--wp--custom--ctx--ui--field--active-color, #000000);
+			box-shadow: var(--wp--custom--ctx--ui--stepper--focus-ring, var(--wp--custom--ctx--ui--focus-ring, 0 0 0 3px rgba(0, 0, 0, 0.05)));
+		}
+
+		&:disabled {
+			opacity: var(--wp--custom--ctx--ui--stepper--disabled-opacity, var(--wp--custom--ctx--ui--button--disabled-opacity, 0.55));
+			cursor: default;
+		}
+
+		&:not(:disabled):hover {
+			background: var(--wp--custom--ctx--ui--stepper--button-hover-background, rgba(148, 163, 184, 0.08));
+		}
+	}
+
+	.ctx2-stepper__value {
+		min-width: var(--wp--custom--ctx--ui--stepper--value-min-width, 1.75rem);
+		text-align: center;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		font-size: var(--wp--custom--ctx--ui--font-size, 1rem);
+	}
+}

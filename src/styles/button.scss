@@ -1,0 +1,55 @@
+.ctx2-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.75rem;
+	padding: var(--wp--custom--ctx--ui--padding-y, 0.625rem)
+		var(--wp--custom--ctx--ui--button--padding-x, 1rem);
+	font: inherit;
+	font-weight: 600;
+	color: var(--wp--custom--ctx--ui--on-color, #fff);
+	background: var(--wp--custom--ctx--ui--color, #000000);
+	border: 1px solid transparent;
+	border-radius: var(--wp--custom--ctx--ui--button--radius, var(--wp--custom--ctx--ui--radius, 6px 6px 6px 6px));
+	font-size: var(--wp--custom--ctx--ui--font-size, 1rem);
+	cursor: pointer;
+	text-decoration: none;
+	transition:
+		background-color 0.15s ease,
+		border-color 0.15s ease,
+		color 0.15s ease,
+		opacity 0.15s ease;
+
+	&:hover:not(:disabled) {
+		background: color-mix(in srgb, var(--wp--custom--ctx--ui--color, #000000) 88%, rgb(255, 255, 255));
+	}
+
+	&:disabled {
+		opacity: var(--wp--custom--ctx--ui--button--disabled-opacity, 0.55);
+		cursor: not-allowed;
+	}
+
+	&.ctx2-button--secondary {
+		color: var(--wp--custom--ctx--ui--color, #000000);
+		background: var(--wp--custom--ctx--ui--field--background, var(--wp--preset--color--base, #fff));
+		border-color: var(--wp--custom--ctx--ui--color, #000000);
+
+		&:hover:not(:disabled) {
+			background: var(--wp--custom--ctx--ui--field--hover-background, rgba(148, 163, 184, 0.08));
+		}
+	}
+
+	&.ctx2-button--tertiary {
+		color: var(--wp--custom--ctx--ui--color, #000000);
+		background: transparent;
+		border-color: transparent;
+
+		&:hover:not(:disabled) {
+			background: color-mix(in srgb, var(--wp--custom--ctx--ui--color, #000000) 8%, transparent);
+	}
+	}
+
+	&.ctx2-button--full-width {
+		width: 100%;
+	}
+}

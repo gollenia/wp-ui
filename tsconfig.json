@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"rootDir": "./src",
+		"outDir": "./lib",
+		"jsx": "react-jsx",
+		"target": "ES2020",
+		"lib": ["DOM", "ES2020"],
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"declaration": true,
+		"sourceMap": true,
+		"strict": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowUnusedLabels": false,
+		"allowSyntheticDefaultImports": true,
+		"noUncheckedSideEffectImports": true,
+		"noFallthroughCasesInSwitch": true,
+		"allowUnreachableCode": false,
+		"noUncheckedIndexedAccess": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noErrorTruncation": false,
+		"noImplicitAny": false,
+		"allowJs": true,
+		"resolveJsonModule": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}

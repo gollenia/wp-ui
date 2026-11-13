@@ -1,0 +1,25 @@
+export {
+	default,
+	default as Dialog,
+	FormDialog,
+	FormDialogBackdrop,
+	FormDialogClose,
+	FormDialogDescription,
+	FormDialogHeader,
+	FormDialogPanel,
+	FormDialogPortal,
+	FormDialogTitle,
+	FormDialogTrigger,
+} from './components/FormDialog/FormDialog';
+export type {
+	FormDialogBackdropProps,
+	FormDialogCloseProps,
+	FormDialogComponent,
+	FormDialogDescriptionProps,
+	FormDialogHeaderProps,
+	FormDialogPanelProps,
+	FormDialogPortalProps,
+	FormDialogProps,
+	FormDialogTitleProps,
+	FormDialogTriggerProps,
+} from './components/FormDialog/FormDialog';
