@@ -1,0 +1,16 @@
+.ctx-ui-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ctx-ui-list-gap, var(--wp--custom--ctx--ui--list--gap, 1rem));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ctx-ui-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ctx-ui-list-item-gap, var(--wp--custom--ctx--ui--list--item-gap, 1rem));
+  min-width: 0;
+}
+.ctx-ui-list-item__leading, .ctx-ui-list-item__action { flex: 0 0 auto; }
+.ctx-ui-list-item__content { flex: 1 1 auto; min-width: 0; }

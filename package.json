@@ -1,6 +1,6 @@
 {
 	"name": "@contexis/wp-ui",
-	"version": "1.0.0",
+   "version": "1.0.1",
 	"publishConfig": { "access": "public" },
 	"description": "Modular WordPress UI components and forms",
 	"author": "Thomas Gollenia",
@@ -10,7 +10,8 @@
 	"types": "lib/index.d.ts",
 	"sideEffects": [
 		"./lib/style.css",
-		"./lib/card.css"
+		"./lib/card.css",
+		"./lib/list.css"
 	],
 	"files": [
 		"lib",
@@ -42,7 +43,14 @@
 			"require": "./lib/card.js",
 			"default": "./lib/card.js"
 		},
-		"./card.css": "./lib/card.css"
+		"./card.css": "./lib/card.css",
+		"./list": {
+			"types": "./lib/list.d.ts",
+			"import": "./lib/esm/list.js",
+			"require": "./lib/list.js",
+			"default": "./lib/list.js"
+		},
+		"./list.css": "./lib/list.css"
 	},
 	"bugs": {
 		"url": "https://github.com/gollenia/wp-ui/issues",
@@ -52,9 +60,9 @@
 	"scripts": {
 		"clean": "rm -rf lib",
 		"build": "npm run clean && npm run build:js && npm run build:esm && npm run build:css && npm run build:types",
-		"build:js": "esbuild src/index.ts src/form.ts src/dialog.ts src/card.ts --bundle --format=cjs --platform=neutral --target=es2020 --sourcemap --outdir=lib --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
-		"build:esm": "esbuild src/index.ts src/form.ts src/dialog.ts src/card.ts --bundle --format=esm --splitting --platform=neutral --target=es2020 --sourcemap --outdir=lib/esm --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
-		"build:css": "esbuild src/style.scss --bundle --loader:.scss=css --outfile=lib/style.css && esbuild src/card.scss --bundle --loader:.scss=css --outfile=lib/card.css",
+		"build:js": "esbuild src/index.ts src/form.ts src/dialog.ts src/card.ts src/list.ts --bundle --format=cjs --platform=neutral --target=es2020 --sourcemap --outdir=lib --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
+		"build:esm": "esbuild src/index.ts src/form.ts src/dialog.ts src/card.ts src/list.ts --bundle --format=esm --splitting --platform=neutral --target=es2020 --sourcemap --outdir=lib/esm --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
+		"build:css": "esbuild src/style.scss --bundle --loader:.scss=css --outfile=lib/style.css && esbuild src/card.scss --bundle --loader:.scss=css --outfile=lib/card.css && esbuild src/list.scss --bundle --loader:.scss=css --outfile=lib/list.css",
 		"build:types": "tsc -p tsconfig.types.json",
 		"check": "tsc -p tsconfig.json --noEmit",
 		"lint": "biome check biome.json jest.config.ts package.json tsconfig.json tsconfig.jest.json tsconfig.types.json",

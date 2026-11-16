@@ -339,3 +339,7 @@ Also supported are `radius` and `shadow`. WordPress turns these settings into `-
 For an intentional per-plugin or per-block override, set the corresponding `--ctx-ui-card-*` variable on the card or an ancestor, for example `--ctx-ui-card-hover-background: blue`. These variables take precedence over theme values and are inherited; omit them to use the theme. The existing explicit `hover` prop and `ctx-ui-card--hover-*` classes remain available; omit the prop to use the theme defaults, or set `hover="none"` to disable effects.
 
 The card CSS is separate from the existing `style.css`. Existing root, `form`, `dialog` and `style.css` exports are retained. The existing `@contexis/wp-react-form` package remains independent; changing package names does not redirect old imports.
+
+## List
+
+`@contexis/wp-ui/list` exports `List` and `ListItem`; import `@contexis/wp-ui/list.css` for the styles. A list item accepts optional `leading` and `action` slots, and arbitrary content as children. Provide an accessible label for icon-only actions. For a description list, place a semantic `<dl>` with its `<dt>` and `<dd>` children in the item content; this retains valid description-list markup while keeping leading visuals and actions available.
