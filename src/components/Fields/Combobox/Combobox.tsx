@@ -26,6 +26,8 @@ type ComboboxProps = {
 	clearLabel?: string;
 	noResultsLabel?: string;
 	commitOnInput?: boolean;
+	autoComplete?: string;
+	onInputChange?: (value: string) => void;
 	renderOption?: (option: string, state: RenderOptionState) => ReactNode;
 };
 
@@ -55,6 +57,8 @@ const Combobox = (props: ComboboxProps) => {
 		clearLabel = 'Clear selection',
 		noResultsLabel = 'No results',
 		commitOnInput = true,
+		autoComplete = 'off',
+		onInputChange,
 		renderOption,
 	} = props;
 
@@ -144,6 +148,7 @@ const Combobox = (props: ComboboxProps) => {
 
 	const handleInputValueChange = (nextValue: string) => {
 		setInputValue(nextValue);
+		onInputChange?.(nextValue);
 		if (commitOnInput) {
 			onChange(nextValue);
 		}
@@ -198,7 +203,7 @@ const Combobox = (props: ComboboxProps) => {
 					placeholder={placeholder}
 					required={required}
 					disabled={disabled}
-					autoComplete="off"
+					autoComplete={autoComplete}
 					aria-describedby={describedBy}
 					aria-required={required || undefined}
 					aria-invalid={hasError || undefined}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/components/Card/Card.tsx"],
+  "sourcesContent": ["import { forwardRef, type HTMLAttributes } from 'react';\n\nexport type CardHover = 'none' | 'lift' | 'image' | 'background';\n\nexport interface CardProps extends HTMLAttributes<HTMLDivElement> {\n  hover?: CardHover;\n}\n\n/** A visual container. Use a link or button inside for interaction. */\nexport const Card = forwardRef<HTMLDivElement, CardProps>(function Card(\n  { className, hover, ...props }, ref,\n) {\n  const classes = ['ctx-ui-card', hover && `ctx-ui-card--hover-${hover}`, className]\n    .filter(Boolean).join(' ');\n  return <div ref={ref} className={classes} {...props} />;\n});\n"],
+  "mappings": ";AAAA,SAAS,kBAAuC;AAcvC;AALF,IAAM,OAAO,WAAsC,SAASA,MACjE,EAAE,WAAW,OAAO,GAAG,MAAM,GAAG,KAChC;AACA,QAAM,UAAU,CAAC,eAAe,SAAS,sBAAsB,KAAK,IAAI,SAAS,EAC9E,OAAO,OAAO,EAAE,KAAK,GAAG;AAC3B,SAAO,oBAAC,SAAI,KAAU,WAAW,SAAU,GAAG,OAAO;AACvD,CAAC;",
+  "names": ["Card"]
+}

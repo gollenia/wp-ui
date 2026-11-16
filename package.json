@@ -1,14 +1,16 @@
 {
-	"name": "@contexis/wp-react-form",
-	"version": "2.6.2",
-	"description": "Create forms in the frontend based on JSON Form data",
+	"name": "@contexis/wp-ui",
+	"version": "1.0.0",
+	"publishConfig": { "access": "public" },
+	"description": "Modular WordPress UI components and forms",
 	"author": "Thomas Gollenia",
 	"license": "GPL-2.0-or-later",
 	"main": "lib/index.js",
 	"module": "lib/esm/index.js",
 	"types": "lib/index.d.ts",
 	"sideEffects": [
-		"./lib/style.css"
+		"./lib/style.css",
+		"./lib/card.css"
 	],
 	"files": [
 		"lib",
@@ -33,19 +35,26 @@
 			"require": "./lib/dialog.js",
 			"default": "./lib/dialog.js"
 		},
-		"./style.css": "./lib/style.css"
+		"./style.css": "./lib/style.css",
+		"./card": {
+			"types": "./lib/card.d.ts",
+			"import": "./lib/esm/card.js",
+			"require": "./lib/card.js",
+			"default": "./lib/card.js"
+		},
+		"./card.css": "./lib/card.css"
 	},
 	"bugs": {
-		"url": "https://github.com/gollenia/wp-react-form/issues",
+		"url": "https://github.com/gollenia/wp-ui/issues",
 		"email": "thomas@gollenia.at"
 	},
-	"homepage": "https://github.com/gollenia/wp-react-form#readme",
+	"homepage": "https://github.com/gollenia/wp-ui#readme",
 	"scripts": {
 		"clean": "rm -rf lib",
 		"build": "npm run clean && npm run build:js && npm run build:esm && npm run build:css && npm run build:types",
-		"build:js": "esbuild src/index.ts src/form.ts src/dialog.ts --bundle --format=cjs --platform=neutral --target=es2020 --sourcemap --outdir=lib --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
-		"build:esm": "esbuild src/index.ts src/form.ts src/dialog.ts --bundle --format=esm --splitting --platform=neutral --target=es2020 --sourcemap --outdir=lib/esm --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
-		"build:css": "esbuild src/style.scss --bundle --loader:.scss=css --outfile=lib/style.css",
+		"build:js": "esbuild src/index.ts src/form.ts src/dialog.ts src/card.ts --bundle --format=cjs --platform=neutral --target=es2020 --sourcemap --outdir=lib --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
+		"build:esm": "esbuild src/index.ts src/form.ts src/dialog.ts src/card.ts --bundle --format=esm --splitting --platform=neutral --target=es2020 --sourcemap --outdir=lib/esm --external:react --external:react/jsx-runtime --external:react/jsx-dev-runtime --external:@base-ui/react --external:@base-ui/react/*",
+		"build:css": "esbuild src/style.scss --bundle --loader:.scss=css --outfile=lib/style.css && esbuild src/card.scss --bundle --loader:.scss=css --outfile=lib/card.css",
 		"build:types": "tsc -p tsconfig.types.json",
 		"check": "tsc -p tsconfig.json --noEmit",
 		"lint": "biome check biome.json jest.config.ts package.json tsconfig.json tsconfig.jest.json tsconfig.types.json",

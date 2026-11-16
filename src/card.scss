@@ -1,0 +1,43 @@
+.ctx-ui-card {
+  background-color: var(--ctx-ui-card-background, var(--wp--custom--ctx--ui--card--background, transparent));
+  border-radius: var(--ctx-ui-card-radius, var(--wp--custom--ctx--ui--card--radius, 0));
+  box-shadow: var(--ctx-ui-card-shadow, var(--wp--custom--ctx--ui--card--shadow, none));
+  transition: transform var(--ctx-ui-card-duration, var(--wp--custom--ctx--ui--card--duration, 200ms)) ease,
+    background-color var(--ctx-ui-card-duration, var(--wp--custom--ctx--ui--card--duration, 200ms)) ease,
+    box-shadow var(--ctx-ui-card-duration, var(--wp--custom--ctx--ui--card--duration, 200ms)) ease;
+}
+
+.ctx-ui-card:hover, .ctx-ui-card:focus-within {
+  background-color: var(--ctx-ui-card-hover-background, var(--wp--custom--ctx--ui--card--hover-background, var(--ctx-ui-card-background, var(--wp--custom--ctx--ui--card--background, transparent))));
+  box-shadow: var(--ctx-ui-card-hover-shadow, var(--wp--custom--ctx--ui--card--hover-shadow, var(--ctx-ui-card-shadow, var(--wp--custom--ctx--ui--card--shadow, none))));
+  transform: translateY(var(--ctx-ui-card-hover-translate-y, var(--wp--custom--ctx--ui--card--hover-translate-y, 0px))) scale(var(--ctx-ui-card-hover-scale, var(--wp--custom--ctx--ui--card--hover-scale, 1)));
+}
+
+.ctx-ui-card__image { overflow: hidden; }
+.ctx-ui-card__image img {
+  transition: transform var(--ctx-ui-card-duration, var(--wp--custom--ctx--ui--card--duration, 200ms)) ease;
+}
+.ctx-ui-card:hover .ctx-ui-card__image img, .ctx-ui-card:focus-within .ctx-ui-card__image img {
+  transform: scale(var(--ctx-ui-card-hover-image-scale, var(--wp--custom--ctx--ui--card--hover-image-scale, 1)));
+}
+
+/* Explicit variants are retained for callers of the original card API. */
+.ctx-ui-card--hover-none {
+  --ctx-ui-card-hover-translate-y: 0px;
+  --ctx-ui-card-hover-scale: 1;
+  --ctx-ui-card-hover-image-scale: 1;
+  --ctx-ui-card-hover-background: var(--ctx-ui-card-background, var(--wp--custom--ctx--ui--card--background, transparent));
+  --ctx-ui-card-hover-shadow: var(--ctx-ui-card-shadow, var(--wp--custom--ctx--ui--card--shadow, none));
+}
+.ctx-ui-card--hover-lift {
+  --ctx-ui-card-hover-translate-y: var(--wp--custom--ctx--ui--card--hover-lift, -0.25rem);
+  --ctx-ui-card-hover-shadow: var(--wp--custom--ctx--ui--card--hover-shadow, 0 8px 24px rgb(0 0 0 / 0.15));
+}
+.ctx-ui-card--hover-image { --ctx-ui-card-hover-image-scale: var(--wp--custom--ctx--ui--card--hover-image-scale, 1.05); }
+.ctx-ui-card--hover-background { --ctx-ui-card-hover-background: var(--wp--custom--ctx--ui--card--hover-background, var(--ctx-ui-card-background, var(--wp--custom--ctx--ui--card--background, transparent))); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ctx-ui-card, .ctx-ui-card__image img { transition: none; }
+  .ctx-ui-card:hover, .ctx-ui-card:focus-within,
+  .ctx-ui-card:hover .ctx-ui-card__image img, .ctx-ui-card:focus-within .ctx-ui-card__image img { transform: none; }
+}

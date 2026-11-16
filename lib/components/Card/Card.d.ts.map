@@ -1,0 +1,1 @@
+{"version":3,"file":"Card.d.ts","sourceRoot":"","sources":["../../../src/components/Card/Card.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAc,KAAK,cAAc,EAAE,MAAM,OAAO,CAAC;AAExD,MAAM,MAAM,SAAS,GAAG,MAAM,GAAG,MAAM,GAAG,OAAO,GAAG,YAAY,CAAC;AAEjE,MAAM,WAAW,SAAU,SAAQ,cAAc,CAAC,cAAc,CAAC;IAC/D,KAAK,CAAC,EAAE,SAAS,CAAC;CACnB;AAED,uEAAuE;AACvE,eAAO,MAAM,IAAI,sGAMf,CAAC"}

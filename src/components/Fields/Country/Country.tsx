@@ -18,6 +18,7 @@ type CountryProps = {
 	error?: string;
 	onChange: (value: FieldValue) => void;
 	value: string;
+	autoComplete?: string;
 };
 
 const browserLocale = navigator.language;
@@ -37,6 +38,7 @@ const Country = (props: CountryProps) => {
 		value,
 		placeholder,
 		formTouched,
+		autoComplete,
 	} = props;
 
 	const countries = useMemo(
@@ -64,6 +66,14 @@ const Country = (props: CountryProps) => {
 		onChange(selectedValue);
 	};
 
+	const handleInputChange = (input: string) => {
+		const normalized = input.trim().toLocaleLowerCase(browserLocale);
+		const country = countries.find(({ label, value }) =>
+			label.toLocaleLowerCase(browserLocale) === normalized || value.toLowerCase() === normalized,
+		);
+		if (country) onChange(country.value);
+	};
+
 	return (
 		<Combobox
 			label={label}
@@ -81,6 +91,8 @@ const Country = (props: CountryProps) => {
 			onChange={handleChange}
 			allowClear={!required}
 			commitOnInput={false}
+			autoComplete={autoComplete ?? 'country-name'}
+			onInputChange={handleInputChange}
 			clearLabel={help ?? 'Make a selection'}
 			noResultsLabel="No matching country"
 		/>

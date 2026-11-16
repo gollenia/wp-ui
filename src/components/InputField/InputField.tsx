@@ -119,6 +119,7 @@ const InputField = (props: FieldRenderProps): JSX.Element | null => {
 			return withSuspense(
 				<Country
 					{...base}
+					autoComplete={props.autoComplete}
 					region={props.region ?? 'world'}
 					help={props.help}
 					customError={props.customError ?? ''}

@@ -14,6 +14,7 @@ type CountryProps = {
     error?: string;
     onChange: (value: FieldValue) => void;
     value: string;
+    autoComplete?: string;
 };
 declare const Country: (props: CountryProps) => import("react/jsx-runtime").JSX.Element;
 export default Country;

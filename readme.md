@@ -1,4 +1,4 @@
-# `@contexis/wp-react-form`
+# `@contexis/wp-ui`
 
 React form renderer for WordPress-based frontends.
 
@@ -7,11 +7,11 @@ The package uses React directly and renders forms from a field schema. You can e
 ## Install
 
 ```bash
-npm install @contexis/wp-react-form
+npm install @contexis/wp-ui
 ```
 
 ```ts
-import '@contexis/wp-react-form/style.css';
+import '@contexis/wp-ui/style.css';
 ```
 
 ## Scope
@@ -61,14 +61,14 @@ Named exports:
 - `sanitizeHtml`
 - `sanitizeInlineHtml`
 
-The package also exports the relevant TypeScript types from [`src/types.ts`](/var/www/projects/wp-react-form/src/types.ts).
+The package also exports the relevant TypeScript types from [`src/types.ts`](src/types.ts).
 
 ## Structure Helpers
 
 `Accordion` is a form-oriented layout primitive for grouped flows. Sections can contain schema-rendered fields, custom components, or both.
 
 ```tsx
-import { Accordion, Fieldset } from '@contexis/wp-react-form';
+import { Accordion, Fieldset } from '@contexis/wp-ui';
 
 <Accordion value={[openSection]} onValueChange={([next]) => setOpenSection(next)}>
 	<Accordion.Section
@@ -89,8 +89,8 @@ import { Accordion, Fieldset } from '@contexis/wp-react-form';
 ## Basic Usage
 
 ```tsx
-import Form from '@contexis/wp-react-form';
-import '@contexis/wp-react-form/style.css';
+import Form from '@contexis/wp-ui';
+import '@contexis/wp-ui/style.css';
 
 const fields = [
 	{
@@ -252,7 +252,7 @@ const fields = [
 If you do not want the full `Form` component, you can render visible fields yourself:
 
 ```tsx
-import { Fieldset } from '@contexis/wp-react-form';
+import { Fieldset } from '@contexis/wp-ui';
 
 <Fieldset
 	fields={fields}
@@ -272,7 +272,7 @@ import { Fieldset } from '@contexis/wp-react-form';
 Or render a single schema-driven field directly:
 
 ```tsx
-import { FormField } from '@contexis/wp-react-form';
+import { FormField } from '@contexis/wp-ui';
 
 <FormField
 	type="text"
@@ -293,5 +293,49 @@ import { FormField } from '@contexis/wp-react-form';
 If you want to use the concrete field primitives directly, import them individually:
 
 ```tsx
-import { Input, Select, TextArea } from '@contexis/wp-react-form';
+import { Input, Select, TextArea } from '@contexis/wp-ui';
 ```
+
+## Card
+
+The card is an optional entry point; importing it does not import the form bundle or its styles.
+
+```tsx
+import { Card } from '@contexis/wp-ui/card';
+import '@contexis/wp-ui/card.css';
+
+<Card>
+  <div className="ctx-ui-card__image"><img src="/event.jpg" alt="" /></div>
+  <a href="/event">Event</a>
+</Card>
+```
+
+The same CSS classes work without React. The theme controls the default hover and focus effects with `settings.custom.ctx.ui.card` in `theme.json`. Effects can be combined; defaults produce no visible effect.
+
+```json
+{
+  "settings": {
+    "custom": {
+      "ctx": {
+        "ui": {
+          "card": {
+            "background": "#ffffff",
+            "hoverBackground": "#eeeeee",
+            "hoverImageScale": "1.05",
+            "hoverScale": "1",
+            "hoverTranslateY": "-4px",
+            "hoverShadow": "0 8px 24px rgba(0, 0, 0, 0.15)",
+            "duration": "200ms"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Also supported are `radius` and `shadow`. WordPress turns these settings into `--wp--custom--ctx--ui--card--*` CSS variables. `hoverScale` affects the entire card; `hoverImageScale` affects images inside `.ctx-ui-card__image`. Motion is disabled when reduced motion is requested.
+
+For an intentional per-plugin or per-block override, set the corresponding `--ctx-ui-card-*` variable on the card or an ancestor, for example `--ctx-ui-card-hover-background: blue`. These variables take precedence over theme values and are inherited; omit them to use the theme. The existing explicit `hover` prop and `ctx-ui-card--hover-*` classes remain available; omit the prop to use the theme defaults, or set `hover="none"` to disable effects.
+
+The card CSS is separate from the existing `style.css`. Existing root, `form`, `dialog` and `style.css` exports are retained. The existing `@contexis/wp-react-form` package remains independent; changing package names does not redirect old imports.

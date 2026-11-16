@@ -254,6 +254,16 @@ describe('field components', () => {
 		expect(onChange).toHaveBeenLastCalledWith('AT');
 	});
 
+	test('Country accepts browser autofill and stores the country code', () => {
+		const onChange = jest.fn();
+		render(<Country name="country" label="Country" placeholder="" required={false} width={6}
+			region="world" disabled={false} customError="" formTouched={false} value="" onChange={onChange} />);
+		const input = screen.getByRole('combobox', { name: 'Country' });
+		expect(input).toHaveAttribute('autocomplete', 'country-name');
+		fireEvent.change(input, { target: { value: 'Austria' } });
+		expect(onChange).toHaveBeenLastCalledWith('AT');
+	});
+
 	test('Submit uses placeholder fallback and respects disabled state', () => {
 		render(
 			<Submit
